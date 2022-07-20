@@ -26,29 +26,3 @@
     line-height: 36px;
     color: #CFF4FC;
 }
-
-.header__input {
-    box-sizing: border-box;
-    position: absolute;
-    background: #FFFFFF;
-    border: 1px solid #CED4DA;
-    border-radius: 4px;
-    width: 820px;
-    height: 64px;
-    bottom: 0;
-    left: 50%;
-    transform: translate(-50%, 50%);
-    padding-left: 32px;
-    font-family: 'Inter', sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 24px;
-    line-height: 21px;
-}
-.header__input::placeholder {
-    color: #ABB5BE;
-    font-family: 'Inter', sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 24px;
-}

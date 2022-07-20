@@ -1,8 +1,0 @@
-.main {
-    padding: 80px 0 50px 0;
-}
-.grid {
-    display: grid;
-    gap: 22px 19px;
-    grid-template-columns: 1fr 1fr 1fr
-}

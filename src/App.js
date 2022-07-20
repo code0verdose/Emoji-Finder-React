@@ -1,8 +1,8 @@
 import './App.css';
-import './Data/emoji.js'
-import Header from "./Components/header/Header";
-import Main from "./Components/main/Main";
-import Footer from "./Components/footer/Footer";
+import './data/emoji.js'
+import Header from "./Components/Header/Header";
+import Main from "./Components/Main/Main";
+import Footer from "./Components/Footer/Footer";
 
 function App() {
     return (
