@@ -1,0 +1,34 @@
+.item {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #FFF;
+    border: 1px solid #DEE2E6;
+    border-radius: 4px;
+}
+.item__emoji {
+    font-weight: 400;
+    font-size: 48px;
+    line-height: 48px;
+    margin-bottom: 18px;
+}
+.item__title {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 17px;
+    line-height: 28px;
+    text-decoration-line: underline;
+    color: #000000;
+    margin-bottom: 12px;
+}
+.item__keywords {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+    text-align: center;
+    color: #3F444A;
+}
