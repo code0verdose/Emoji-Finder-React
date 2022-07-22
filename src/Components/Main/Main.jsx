@@ -20,6 +20,7 @@ deleteRepeat(data)
 function Main() {
 
     const [searchItem, setSearchItem] = useState('');
+    const inputArr = searchItem.split(' ').filter(elem => elem.trim())
 
     return (
         <>
@@ -29,10 +30,11 @@ function Main() {
                 <div className="container">
                     <div className="grid">
                         {data
-                            .filter(value => {
-                                if (searchItem === '') return value;
-                                return value.title.toLowerCase().includes(searchItem.toLowerCase().trim())
-                            })
+                            .filter(value =>
+                                inputArr.every(elem =>
+                                    value.title.toLowerCase().includes(elem) ||
+                                    value.keywords.toLowerCase().includes(elem))
+                            )
                             .map((elem, index) =>
                                 (<Item key={index} symbol={elem.symbol} title={elem.title}
                                        keywords={elem.keywords}/>))}
