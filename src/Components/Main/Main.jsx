@@ -1,26 +1,44 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './Main.css'
-import {data} from "../../data/emoji.js";
 import Item from "../Item/Item";
 
 
-//Функция удаления повторов
-function deleteRepeat(data) {
-    const newArray = data.map((value) => {
-        return [...new Set(value.keywords.split(" ").sort())].join(" ");
-    })
-    data.forEach(function (item, index) {
-        item.keywords = newArray[index]
-    })
-}
+function Main({newData}) {
 
-deleteRepeat(data)
+    //Функция удаления повторов
+    function deleteRepeat(data) {
+        const newArray = data.map((value) => {
+            return [...new Set(value.keywords.split(" ").sort())].join(" ");
+        })
+        data.forEach(function (item, index) {
+            item.keywords = newArray[index]
+        })
+    }
 
-
-function Main() {
+    deleteRepeat(newData)
 
     const [searchItem, setSearchItem] = useState('');
-    const inputArr = searchItem.split(' ').filter(elem => elem.trim())
+    const [searchData, setSearchData] = useState([]);
+
+    const searchArr = searchData.length > 0 ? searchData : newData
+
+
+    useEffect(() => {
+        let ignore = false;
+
+        const res = fetch(`https://emoji.ymatuhin.workers.dev/?search=${searchItem}`)
+
+        if (!ignore) {
+            res
+                .then((res) => res.json())
+                .then((data) => setSearchData(data))
+        }
+
+        return () => {
+            ignore = true;
+        };
+    }, [searchItem])
+
 
     return (
         <>
@@ -29,15 +47,14 @@ function Main() {
             <main className="main">
                 <div className="container">
                     <div className="grid">
-                        {data
-                            .filter(value =>
-                                inputArr.every(elem =>
-                                    value.title.toLowerCase().includes(elem) ||
-                                    value.keywords.toLowerCase().includes(elem))
-                            )
+                        {searchArr
                             .map((elem, index) =>
-                                (<Item key={index} symbol={elem.symbol} title={elem.title}
-                                       keywords={elem.keywords}/>))}
+                                (<Item
+                                    key={index}
+                                    symbol={elem.symbol}
+                                    title={elem.title}
+                                    keywords={elem.keywords}
+                                />))}
                     </div>
                 </div>
             </main>

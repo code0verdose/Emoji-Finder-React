@@ -1,17 +1,28 @@
 import './App.css';
-import './data/emoji.js'
 import Header from "./Components/Header/Header";
 import Main from "./Components/Main/Main";
 import Footer from "./Components/Footer/Footer";
+import {useState} from "react";
+
+
+const res = fetch('https://emoji.ymatuhin.workers.dev/', {});
+const promise = res.then(res => res.json())
+
 
 function App() {
+
+    const [newData, setData] = useState([])
+
+    if (newData.length === 0) promise.then(data => setData(data))
+
+
     return (
         <>
             <Header/>
-            <Main/>
+            <Main newData={newData}/>
             <Footer/>
         </>
-    );
+    )
 }
 
 export default App;
