@@ -24,18 +24,18 @@ function Main({newData}) {
 
 
     useEffect(() => {
-        let ignore = false;
+        let controller = new AbortController();
+        const {signal} = controller.signal
 
-        const res = fetch(`https://emoji.ymatuhin.workers.dev/?search=${searchItem}`)
+        const res = fetch(`https://emoji.ymatuhin.workers.dev/?search=${searchItem}`, {signal})
 
-        if (!ignore) {
-            res
-                .then((res) => res.json())
-                .then((data) => setSearchData(data))
-        }
+        res
+            .then((res) => res.json())
+            .then((data) => setSearchData(data))
+
 
         return () => {
-            ignore = true;
+            controller.abort()
         };
     }, [searchItem])
 
