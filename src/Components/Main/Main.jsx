@@ -15,12 +15,9 @@ function Main({newData}) {
         })
     }
 
-    deleteRepeat(newData)
 
     const [searchItem, setSearchItem] = useState('');
     const [searchData, setSearchData] = useState([]);
-
-    const searchArr = searchData.length > 0 ? searchData : newData
 
 
     useEffect(() => {
@@ -31,7 +28,10 @@ function Main({newData}) {
 
         res
             .then((res) => res.json())
-            .then((data) => setSearchData(data))
+            .then((data) => {
+                deleteRepeat(data)
+                setSearchData(data)
+            })
 
 
         return () => {
@@ -47,7 +47,7 @@ function Main({newData}) {
             <main className="main">
                 <div className="container">
                     <div className="grid">
-                        {searchArr
+                        {searchData
                             .map((elem, index) =>
                                 (<Item
                                     key={index}
