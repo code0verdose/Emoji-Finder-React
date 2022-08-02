@@ -25,7 +25,7 @@ function Main({newData}) {
 
     useEffect(() => {
         let controller = new AbortController();
-        const {signal} = controller.signal
+        const signal = controller.signal
 
         const res = fetch(`https://emoji.ymatuhin.workers.dev/?search=${searchItem}`, {signal})
 
